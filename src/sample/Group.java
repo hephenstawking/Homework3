@@ -38,7 +38,7 @@ public class Group {
             if (students[i] == null) {
                 student.setGroupName(groupName);
                 students[i] = student;
-                System.out.println("You've added a student  " + student.getName() + " " + student.getLastName() + " to  a group - " + student.getGroupName());
+                System.out.println("You've added a student " + student.getName() + " " + student.getLastName() + " to  a group - " + student.getGroupName());
                 return;
             }
         }
