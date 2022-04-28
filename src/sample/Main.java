@@ -1,5 +1,8 @@
 package sample;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -33,9 +36,8 @@ public class Main {
         } catch (GroupOverflowException e) {
             System.err.println(e.getMessage());
         }
-
         try {
-            Student searchStudent = group.searchStudentByLastName("Zelensky");
+            Student searchStudent = group.searchStudentByLastName("Arestovych");
             System.out.println(searchStudent);
         } catch (StudentNotFoundException e) {
             System.err.println(e.getMessage());
@@ -51,6 +53,9 @@ public class Main {
         group.removeStudentByID(4);
         group.removeStudentByID(25);
 
+        group.sortStudents();
+
+        System.out.println(group);
     }
 
 }

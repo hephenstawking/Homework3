@@ -35,6 +35,6 @@ public class Student extends Human {
         return "Student{" +
                 "id=" + id +
                 ", groupName='" + groupName + '\'' +
-                '}';
+                '}' + super.toString();
     }
 }
