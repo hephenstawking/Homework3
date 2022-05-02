@@ -9,6 +9,7 @@ public class Main {
         Group group = new Group();
         group.setGroupName("Group of students");
 
+
         Student student1 = new Student("O", "Zelensky", Gender.MALE, 1, group.getGroupName());
         Student student2 = new Student("S", "Bandera", Gender.MALE, 2, group.getGroupName());
         Student student3 = new Student("V", "Zaluzhniy", Gender.MALE, 3, group.getGroupName());
@@ -55,7 +56,16 @@ public class Main {
 
         group.sortStudents();
 
-        System.out.println(group);
+        WriteStudentInfo scanData = new WriteStudentInfo();
+
+        System.out.println();
+        try {
+            group.addStudent(scanData.getData());
+            group.addStudent(scanData.getData());
+            System.out.println(group.toString());
+        } catch (GroupOverflowException e) {
+            e.printStackTrace();
+        }
     }
 
 }

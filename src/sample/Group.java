@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Group {
 
     private String groupName;
-    private Student[] students = new Student[10];
+    private Student[] students = new Student[3];
 
     public Group(String groupName, Student[] students) {
         super();
