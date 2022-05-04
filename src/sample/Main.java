@@ -1,14 +1,13 @@
 package sample;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.io.IOException;
+import java.io.File;
 
 public class Main {
 
     public static void main(String[] args) {
         Group group = new Group();
         group.setGroupName("Group of students");
-
 
         Student student1 = new Student("O", "Zelensky", Gender.MALE, 1, group.getGroupName());
         Student student2 = new Student("S", "Bandera", Gender.MALE, 2, group.getGroupName());
@@ -66,6 +65,30 @@ public class Main {
         } catch (GroupOverflowException e) {
             e.printStackTrace();
         }
+
+        GroupFileStorage gr = new GroupFileStorage();
+        try {
+            gr.saveGroupToCSV(group);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+
+        File file = new File(group.getGroupName() + ".csv");
+        Group newGroup = new Group();
+        try {
+            newGroup = gr.loadGroupFromCSV(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+        System.out.println(newGroup.toString());
+        System.out.println();
+
+        File search = gr.findFileByGroupName("Group of students", new File ("C:\\Code\\Java\\Homework3"));
+        File search2 = gr.findFileByGroupName("Some group", new File ("C:\\Code\\Java\\Homework3"));
+
+
     }
 
 }
