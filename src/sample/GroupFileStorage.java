@@ -13,10 +13,10 @@ public class GroupFileStorage {
 
         try (PrintWriter pw = new PrintWriter(new File(group.getGroupName() + ".csv"))) {
 
-            for (int i = 0; i < group.getStudents().length; i++) {
-                if (group.getStudents()[i] != null) {
-                    pw.println(group.getStudents()[i].getId() + ";" + group.getStudents()[i].getLastName() + ";" + group.getStudents()[i].getName() + ";"
-                            + group.getStudents()[i].getGender() + ";" + group.getStudents()[i].getGroupName());
+            for (int i = 0; i < group.getStudents().size(); i++) {
+                if (group.getStudents().get(i) != null) {
+                    pw.println(group.getStudents().get(i).getId() + ";" + group.getStudents().get(i).getLastName() + ";" + group.getStudents().get(i).getName() + ";"
+                            + group.getStudents().get(i).getGender() + ";" + group.getStudents().get(i).getGroupName());
                 }
             }
 
