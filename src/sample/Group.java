@@ -2,6 +2,7 @@ package sample;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Group {
 
@@ -30,11 +31,45 @@ public class Group {
         return students;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return Objects.equals(groupName, group.groupName) && Arrays.equals(students, group.students);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(groupName);
+        result = 31 * result + Arrays.hashCode(students);
+        return result;
+    }
+
     public void setStudents(Student[] students) {
         this.students = students;
     }
 
+    public boolean checkEqualityOfStudent(Student student) {
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] != null) {
+                if (students[i].hashCode() == student.hashCode()) {
+                    if (students[i].equals(student)) {
+                        return false;
+                    }
+                }
+            }
+
+        }
+        return true;
+    }
+
     public void addStudent (Student student) throws GroupOverflowException {
+
+        if (!checkEqualityOfStudent(student)) {
+            throw new GroupOverflowException ("The group has already this student!");
+        }
+
         for (int i = 0; i < students.length; i++) {
             if (students[i] == null) {
                 student.setGroupName(groupName);
